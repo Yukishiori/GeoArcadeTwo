@@ -92,6 +92,7 @@ public class SquareSpawner extends GameObject {
         }
         if (count >= 900) {
             this.sequenceAction.run(this);
+            foreverAction.run(this);
         }
         if (count >= 1500){
             sequenceAction1.run(this);
@@ -100,15 +101,15 @@ public class SquareSpawner extends GameObject {
 
     }
 
-    public void configAction() {
-        //default spawning
-        this.add(new RepeatForeverAction(
-                new SequenceAction(
-                        new WaitAction(60),
-                        createSquareAction
-                )
-        ));
-    }
+//    public void configAction() {
+//        //default spawning
+//        this.add(new RepeatForeverAction(
+//                new SequenceAction(
+//                        new WaitAction(60),
+//                        createSquareAction
+//                )
+//        ));
+//    }
 
     private Action createSquareAction = new ActionAdapter() {
         @Override

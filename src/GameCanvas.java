@@ -30,7 +30,7 @@ public class GameCanvas extends JPanel {
     private void setupSquare() {
 //        GameObjectManager.instance.add(GameObjectManager.instance.recycle(SquareSpawner.class));
         SquareSpawner squareSpawner = GameObjectManager.instance.recycle(SquareSpawner.class);
-        squareSpawner.configAction();
+//        squareSpawner.configAction();
 
     }
     private void setupPlayer() {
