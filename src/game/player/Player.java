@@ -54,7 +54,7 @@ public class Player extends GameObject implements PhysicBody{
     @Override
     public void run() {
         super.run();
-//        this.playerShoot.run(this);
+        this.playerShoot.run(this);
         boxCollider.position.set(this.position);
         this.position.set(MouseMotionInput.instance.position);
         playerHealth.showHealth();
