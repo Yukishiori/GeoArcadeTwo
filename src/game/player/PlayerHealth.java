@@ -12,7 +12,7 @@ public class PlayerHealth{
         this.health = health;
         for (int i = 0; i < health; i++) {
             PlayerHeart playerHeart = GameObjectManager.instance.recycle(PlayerHeart.class);
-            playerHeart.position.set(40 * i, 40);
+            playerHeart.position.set(40 * i + 20, 20);
             this.vector.add(playerHeart);
         }
     }

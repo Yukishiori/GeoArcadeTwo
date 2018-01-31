@@ -101,15 +101,26 @@ public class SquareSpawner extends GameObject {
 
     }
 
-//    public void configAction() {
-//        //default spawning
-//        this.add(new RepeatForeverAction(
-//                new SequenceAction(
-//                        new WaitAction(60),
-//                        createSquareAction
-//                )
-//        ));
+    public void configAction() {
+        //default spawning
+        this.add(new RepeatForeverAction(
+                new SequenceAction(
+                        new WaitAction(60),
+                        createSquareAction
+                )
+        ));
+
+    }
+
+//    private Action checkCountAct = new ActionAdapter() {
+//        @Override
+//        public boolean run(GameObject owner) {
+//            int count;
+//            if (sequenceAction.run(this))count++
+//            return super.run(owner);
+//        }
 //    }
+
 
     private Action createSquareAction = new ActionAdapter() {
         @Override

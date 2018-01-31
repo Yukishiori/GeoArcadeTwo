@@ -3,6 +3,8 @@ package game.player;
 import core.GameObject;
 import core.GameObjectManager;
 import explosionpackage.ExplosionMaker;
+import game.Scene.ReplayScreen;
+import game.Scene.SceneManager;
 import game.player.explosion.ExplosionParticlePlayer;
 import game.player.explosion.ExplosionPlayer;
 import game.player.playershield.PlayerShield;
@@ -80,6 +82,7 @@ public class Player extends GameObject implements PhysicBody{
 //
 //        explosionMaker.config(15,50);
         System.out.println("mat troi kia du o dau");
+        SceneManager.instance.changeScene(new ReplayScreen());
     }
 
     @Override

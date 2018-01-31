@@ -3,6 +3,10 @@ import core.GameObject;
 import core.GameObjectManager;
 import core.Vector2D;
 import game.Background.Background;
+import game.Scene.GameOverviewScene;
+import game.Scene.GamePlayScene;
+import game.Scene.ReplayScreen;
+import game.Scene.SceneManager;
 import game.circlesquare.CircleSquare;
 import game.player.Player;
 import game.square.SquareSpawner;
@@ -18,31 +22,12 @@ public class GameCanvas extends JPanel {
 
 
     public GameCanvas() {
-
         this.setVisible(true);
-        this.setupBackround();
         this.setupBackBuffered();
-        this.setupSquare();
-        this.setupPlayer();
-
+        SceneManager.instance.changeScene(new ReplayScreen());
     }
 
-    private void setupSquare() {
-//        GameObjectManager.instance.add(GameObjectManager.instance.recycle(SquareSpawner.class));
-        SquareSpawner squareSpawner = GameObjectManager.instance.recycle(SquareSpawner.class);
-//        squareSpawner.configAction();
 
-    }
-    private void setupPlayer() {
-        GameObjectManager.instance.recycle(Player.class);
-    }
-    private void setupBackround(){
-        GameObjectManager.instance.add(GameObjectManager.instance.recycle(Background.class));
-    }
-    private void setupBackBuffered() {
-        this.backBuffered = new BufferedImage(400, 600, BufferedImage.TYPE_4BYTE_ABGR);
-        this.graphics = this.backBuffered.getGraphics();
-    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -56,5 +41,10 @@ public class GameCanvas extends JPanel {
 
     public void runAll() {
         GameObjectManager.instance.runAll();
+        SceneManager.instance.performChangeSceneIfNeeded();
+    }
+    private void setupBackBuffered() {
+        this.backBuffered = new BufferedImage(400, 600, BufferedImage.TYPE_4BYTE_ABGR);
+        this.graphics = this.backBuffered.getGraphics();
     }
 }

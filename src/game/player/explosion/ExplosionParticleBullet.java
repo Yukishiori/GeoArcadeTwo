@@ -4,10 +4,8 @@ import core.FrameCounter;
 import core.GameObject;
 import core.Vector2D;
 import renderer.ImageRenderer;
-
-import java.awt.*;
 import java.util.Random;
-import java.util.Vector;
+
 
 public class ExplosionParticleBullet extends GameObject {
     private Random random = new Random();

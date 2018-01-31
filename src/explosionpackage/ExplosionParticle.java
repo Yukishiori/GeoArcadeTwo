@@ -5,6 +5,7 @@ import core.GameObject;
 import core.Vector2D;
 import renderer.ImageRenderer;
 
+import java.awt.*;
 import java.util.Random;
 
 public class ExplosionParticle extends GameObject {
@@ -15,8 +16,13 @@ public class ExplosionParticle extends GameObject {
 
     public ExplosionParticle(String... url) {
         this.velocity = new Vector2D();
+        this.url = url;
         this.renderer = new ImageRenderer(this.url[random.nextInt(url.length)]);
+    }
 
+    @Override
+    public void render(Graphics graphics) {
+        super.render(graphics);
     }
 
     @Override

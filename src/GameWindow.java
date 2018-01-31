@@ -1,3 +1,4 @@
+import input.MouseInput;
 import input.MouseMotionInput;
 
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class GameWindow extends JFrame {
 
     private void event() {
         this.addMouseMotionListener(MouseMotionInput.instance);
+        this.addMouseListener(MouseInput.instance);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

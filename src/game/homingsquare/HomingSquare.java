@@ -3,7 +3,6 @@ package game.homingsquare;
 import core.GameObject;
 import core.GameObjectManager;
 import core.Vector2D;
-import game.player.bullet.HitPlayerBySquare;
 import game.player.Player;
 import game.square.Square;
 import physic.BoxCollider;
@@ -31,9 +30,4 @@ public class HomingSquare extends Square {
         return this.boxCollider;
     }
 
-    @Override
-    public void getHit() {
-        super.getHit();
-        homingVector.set(0,0);
-    }
 }

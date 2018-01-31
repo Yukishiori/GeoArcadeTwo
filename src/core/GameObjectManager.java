@@ -11,8 +11,8 @@ public class GameObjectManager {
 
     public static GameObjectManager instance = new GameObjectManager();
 
-    private Vector<GameObject> vector = new Vector<>();
-    private Vector<GameObject> newVector = new Vector<>();
+    private Vector<GameObject> vector;
+    private Vector<GameObject> newVector;
 
     private GameObjectManager(){
         this.vector = new Vector<>();
@@ -73,11 +73,16 @@ public class GameObjectManager {
             return null;
         }
     }
+
     public Player getPlayer() {
         for (GameObject gameObject : vector) {
             if (!(gameObject instanceof Player)) continue;
             return (Player) gameObject;
         }
         return null;
+    }
+    public void clear() {
+        this.vector.clear();
+        this.newVector.clear();
     }
 }

@@ -1,16 +1,16 @@
 package game.square;
+import core.GameObject;
 import core.Vector2D;
-import game.player.bullet.HitPlayerBySquare;
+import hit.HitObject;
 import physic.BoxCollider;
 import renderer.ImageRenderer;
 import utils.Utils;
 
-public class MediumSquare extends Square{
+public class MediumSquare extends Square implements HitObject {
     public boolean hasGun = false;
     public Vector2D velocity = new Vector2D();
     private SquareShoot squareShoot = new SquareShoot();
     public BoxCollider boxCollider = new BoxCollider(50,50);
-    private HitPlayerBySquare hitPlayerBySquare = new HitPlayerBySquare();
 
 
     public MediumSquare(){
@@ -21,7 +21,6 @@ public class MediumSquare extends Square{
     public void run() {
         super.run();
         this.position.addUp(velocity);
-        hitPlayerBySquare.run(this);
         this.boxCollider.position.set(this.position);
         if (hasGun){
             squareShoot.run(this);
@@ -30,9 +29,8 @@ public class MediumSquare extends Square{
     }
 
     @Override
-    public void getHit() {
-        super.getHit();
-        this.velocity = new Vector2D();
+    public void getHit(GameObject gameObject) {
+        super.getHit(gameObject);
     }
 }
 

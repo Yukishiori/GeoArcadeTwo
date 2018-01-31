@@ -32,10 +32,4 @@ public class SpecialSquare extends Square{
         homingSquare.run();
         homingSquare.position.set(this.position);
     }
-
-    @Override
-    public void getHit() {
-        super.getHit();
-        SquareSpawner.speacialSquareDie = true;
-    }
 }

@@ -2,7 +2,6 @@ package game.square.bullet;
 
         import core.GameObject;
         import core.Vector2D;
-        import game.player.bullet.HitPLayerBySquareBullet;
         import game.player.explosion.ExplosionBullet;
         import physic.BoxCollider;
         import physic.PhysicBody;
@@ -11,7 +10,7 @@ package game.square.bullet;
 public class SquareBullet extends GameObject implements PhysicBody {
     public Vector2D velocity;
     public BoxCollider boxCollider;
-    HitPLayerBySquareBullet hitPLayerBySquareBullet = new HitPLayerBySquareBullet();
+
 
     public SquareBullet() {
         this.renderer = new ImageRenderer("asset-geoarcade-master/resources/square/enemy_square_bullet.png");
@@ -21,7 +20,6 @@ public class SquareBullet extends GameObject implements PhysicBody {
     public void run() {
         this.position.addUp(velocity);
         this.boxCollider.position.set(this.position);
-        hitPLayerBySquareBullet.run(this);
         if (this.position.y >= 600) isAlive = false;
     }
 

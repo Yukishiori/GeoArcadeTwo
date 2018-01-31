@@ -2,14 +2,9 @@ package core;
 
 
 import action.Action;
-import game.player.Player;
-
-import physic.BoxCollider;
-import physic.PhysicBody;
 import renderer.Renderer;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 public class GameObject {

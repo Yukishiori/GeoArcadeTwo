@@ -14,11 +14,11 @@ public class ExplosionPlayer extends GameObject {
 
     public void config() {
         Random random = new Random();
-        for (double i = 0.0; i <= 360; i+=360 / 15) {
+        for (double i = 0.0; i <= 360; i+=360 / 30) {
             ExplosionParticlePlayer explosionParticlePlayer = GameObjectManager.instance.recycle(ExplosionParticlePlayer.class);
             explosionParticlePlayer.position.set(this.position);
             explosionParticlePlayer.velocity.set((new Vector2D(0.0f, 1.0f)).rotate(i).multiply(random.nextInt(8)+2));
-            explosionParticlePlayer.frameCounter = new FrameCounter(random.nextInt(50) + 20 );
+            explosionParticlePlayer.frameCounter = new FrameCounter(random.nextInt(100) + 20 );
         }
     }
 }

@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class BoxCollider {
     public Vector2D position;
-    private float width;
-    private float height;
+    public float width;
+    public float height;
 
     public BoxCollider (float width, float height) {
         this.width = width;
