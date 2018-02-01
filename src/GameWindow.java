@@ -31,14 +31,6 @@ public class GameWindow extends JFrame {
                 System.exit(1);
             }
         });
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getButton() == 1) {
-                    gameCanvas.gameCanvasdeflectOn = true;
-                }
-            }
-        });
     }
 
     public void gameLoop() {
