@@ -9,6 +9,7 @@ import game.player.explosion.ExplosionParticlePlayer;
 import game.player.explosion.ExplosionPlayer;
 import game.player.playershield.PlayerShield;
 import game.player.playershield.PlayerUseShield;
+import hit.HitObject;
 import input.MouseMotionInput;
 import physic.BoxCollider;
 import physic.PhysicBody;
@@ -16,29 +17,29 @@ import renderer.AnimationRenderer;
 import renderer.ImageRenderer;
 import utils.Utils;
 
-public class Player extends GameObject implements PhysicBody{
+public class Player extends GameObject implements PhysicBody, HitObject {
 
     private PlayerShoot playerShoot;
     private PlayerHealth playerHealth;
     public BoxCollider boxCollider;
-    public boolean deflectOn = true;
     private ImageRenderer imageRenderer;
     private AnimationRenderer animationRenderer;
+    private PlayerHit playerHit = new PlayerHit();
 
     public Player() {
         this.imageRenderer = new ImageRenderer("asset-geoarcade-master/resources/player/straight.png");
-        animationRenderer = new AnimationRenderer(false,
+        animationRenderer = new AnimationRenderer(false, 7,
                 "asset-geoarcade-master/resources/player/straight.png",
                 "asset-geoarcade-master/resources/player/straight.png",
-                "asset-geoarcade-master/resources/player/straight.png",
+//                "asset-geoarcade-master/resources/player/straight.png",
+//                "asset-geoarcade-master/resources/player/straight_white.png",
+//                "asset-geoarcade-master/resources/player/straight_white.png",
                 "asset-geoarcade-master/resources/player/straight_white.png",
-                "asset-geoarcade-master/resources/player/straight_white.png",
-                "asset-geoarcade-master/resources/player/straight_white.png",
+//                "asset-geoarcade-master/resources/player/straight.png",
+//                "asset-geoarcade-master/resources/player/straight.png",
                 "asset-geoarcade-master/resources/player/straight.png",
-                "asset-geoarcade-master/resources/player/straight.png",
-                "asset-geoarcade-master/resources/player/straight.png",
-                "asset-geoarcade-master/resources/player/straight_white.png",
-                "asset-geoarcade-master/resources/player/straight_white.png",
+//                "asset-geoarcade-master/resources/player/straight_white.png",
+//                "asset-geoarcade-master/resources/player/straight_white.png",
                 "asset-geoarcade-master/resources/player/straight_white.png");
 
         this.renderer = this.imageRenderer;
@@ -61,28 +62,8 @@ public class Player extends GameObject implements PhysicBody{
         this.position.set(MouseMotionInput.instance.position);
         playerHealth.showHealth();
         playerKeeper();
+        this.playerHit.run(this);
 
-    }
-    public void getHit(){
-
-        this.isAlive = this.playerHealth.run();
-
-        if (this.isAlive){
-            animationRenderer.looped = false;
-            this.renderer = this.animationRenderer;
-//            this.renderer = this.imageRenderer;
-
-        }
-//        this.isAlive = false;
-        ExplosionPlayer explosionPlayer = GameObjectManager.instance.recycle(ExplosionPlayer.class);
-        explosionPlayer.position.set(this.position);
-        explosionPlayer.config();
-//        ExplosionMaker explosionMaker  = GameObjectManager.instance.recycle(ExplosionMaker.class);
-//        explosionMaker.position.set(this.position);
-//
-//        explosionMaker.config(15,50);
-        System.out.println("mat troi kia du o dau");
-        SceneManager.instance.changeScene(new ReplayScreen());
     }
 
     @Override
@@ -90,10 +71,26 @@ public class Player extends GameObject implements PhysicBody{
         return this.boxCollider;
     }
 
-    private void playerKeeper(){
+    private void playerKeeper() {
         if (this.position.x > 360) this.position.x = 360;
-        if (this.position.x <0) this.position.x = 0;
-        if (this.position.y >560) this.position.y = 560;
-        if (this.position.y <-50) this.position.y = -50;
+        if (this.position.x < 0) this.position.x = 0;
+        if (this.position.y > 560) this.position.y = 560;
+        if (this.position.y < -50) this.position.y = -50;
+    }
+
+    @Override
+    public void getHit(GameObject gameObject) {
+
+        this.isAlive = this.playerHealth.run();
+
+        if (this.isAlive){
+            animationRenderer.looped = false;
+            this.renderer = this.animationRenderer;
+        }
+        ExplosionPlayer explosionPlayer = GameObjectManager.instance.recycle(ExplosionPlayer.class);
+        explosionPlayer.position.set(this.position);
+        explosionPlayer.config();
+        System.out.println("mat troi kia du o dau");
+        SceneManager.instance.changeScene(new ReplayScreen());
     }
 }

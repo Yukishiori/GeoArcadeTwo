@@ -18,13 +18,11 @@ import java.awt.image.BufferedImage;
 public class GameCanvas extends JPanel {
     BufferedImage backBuffered;
     Graphics graphics;
-    public boolean gameCanvasdeflectOn = false;
-
 
     public GameCanvas() {
         this.setVisible(true);
         this.setupBackBuffered();
-        SceneManager.instance.changeScene(new ReplayScreen());
+        SceneManager.instance.changeScene(new GameOverviewScene());
     }
 
 
@@ -47,4 +45,5 @@ public class GameCanvas extends JPanel {
         this.backBuffered = new BufferedImage(400, 600, BufferedImage.TYPE_4BYTE_ABGR);
         this.graphics = this.backBuffered.getGraphics();
     }
+
 }

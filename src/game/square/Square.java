@@ -1,5 +1,6 @@
 package game.square;
 
+import constants.Constant;
 import core.FrameCounter;
 import core.GameObject;
 import core.GameObjectManager;
@@ -9,6 +10,10 @@ import hit.HitObject;
 import physic.BoxCollider;
 import physic.PhysicBody;
 import renderer.ImageRenderer;
+
+import javax.sound.sampled.*;
+
+import utils.AudioUtils;
 import utils.Utils;
 
 public class Square extends GameObject implements PhysicBody, HitObject {
@@ -18,10 +23,11 @@ public class Square extends GameObject implements PhysicBody, HitObject {
     public BoxCollider boxCollider ;
     private SquareShoot squareShoot = new SquareShoot();
 
+    Clip clip;
     public Square() {
         this.renderer = new ImageRenderer("asset-geoarcade-master/resources/square/enemy_square_small.png");
         this.velocity = new Vector2D();
-        this.boxCollider = new BoxCollider(20,20);
+        this.boxCollider = new BoxCollider(Constant.Square.BOX_WIDTH, Constant.Square.BOX_HEIGHT);
     }
     @Override
     public void run() {
@@ -50,5 +56,11 @@ public class Square extends GameObject implements PhysicBody, HitObject {
         ExplosionSquare explosionSquare = GameObjectManager.instance.recycle(ExplosionSquare.class);
         explosionSquare.position.set(this.position);
         explosionSquare.config();
+    }
+
+    public void hitSound() {
+        this.clip = AudioUtils.instance.loadSound("");
+        clip.loop(1);
+        clip.start();
     }
 }

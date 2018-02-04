@@ -1,12 +1,13 @@
 package game.Background;
 
+import constants.Constant;
 import core.GameObject;
 import renderer.ImageRenderer;
 import java.awt.*;
 
 public class Background extends GameObject {
     public Background(){
-        this.renderer = new ImageRenderer("asset-geoarcade-master/resources/background/background.png");
-        this.position.set(200,300);
+        this.renderer = new ImageRenderer(Constant.Background.PATH);
+        this.position.set(Constant.Windows.WIDTH / 2, Constant.Windows.HEIGHT / 2);
     }
 }

@@ -1,0 +1,6 @@
+{
+  "waitTime": 2.5,
+  "maxCount": 80,
+  "maxVelocity": 9.0,
+  "minVelocity": 3.0
+}

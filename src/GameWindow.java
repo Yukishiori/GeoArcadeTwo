@@ -1,3 +1,4 @@
+import constants.Constant;
 import input.MouseInput;
 import input.MouseMotionInput;
 
@@ -10,7 +11,7 @@ public class GameWindow extends JFrame {
     private long lastTime = 0;
 
     public GameWindow() {
-        this.setSize(400, 600);
+        this.setSize(Constant.Windows.WIDTH, Constant.Windows.HEIGHT);
         this.setupGameCanvas();
         this.setVisible(true);
         this.event();
@@ -36,7 +37,7 @@ public class GameWindow extends JFrame {
     public void gameLoop() {
         while (true) {
             long currentTime = System.nanoTime();
-            if (currentTime - lastTime >= 17_000_000) {
+            if (currentTime - lastTime >= Constant.Windows.DELAY_NANO_SECOND) {
                 gameCanvas.runAll();
                 this.gameCanvas.renderAll();
                 lastTime = currentTime;

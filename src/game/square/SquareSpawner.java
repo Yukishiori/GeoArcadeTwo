@@ -1,6 +1,7 @@
 package game.square;
 
 import action.*;
+import constants.Constant;
 import core.FrameCounter;
 import core.GameObject;
 import core.GameObjectManager;
@@ -31,7 +32,7 @@ public class SquareSpawner extends GameObject {
 //        circleSquare.config();
         this.foreverAction = new RepeatForeverAction(
                 new SequenceAction(
-                        new WaitAction(60),
+                        new WaitAction(Constant.SquareSpawner.WAIT_FRAME_COUNTER),
                         createSquareAction
                 )
         );
@@ -126,7 +127,7 @@ public class SquareSpawner extends GameObject {
         @Override
         public boolean run(GameObject owner) {
             Square square = GameObjectManager.instance.recycle(Square.class);
-            square.position.set(random.nextInt(380), 0.0f);
+            square.position.set(random.nextInt(Constant.Windows.WIDTH - 20), 0.0f);
             square.velocity.set(new Vector2D(0.0f, random.nextInt(1) + 3));
             return true;
         }
